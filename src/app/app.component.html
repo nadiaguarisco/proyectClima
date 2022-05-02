@@ -1,10 +1,16 @@
-<div class="container">
+<div class="search">
+  <form #form="ngForm" (submit)="onSubmit()" >
+    <input type="text" placeholder="Buscar ciudad" name="city" [(ngModel)]="cityName">
+  </form>
+</div>
+
+<div class="container" *ngIf="weatherData">
   <div class="upper-data">
-    <img src="../assets/dia.jpeg" *ngIf='14 > 15'>
-    <img src="../assets/noche.jpeg" *ngIf='14 <= 15'>
+    <img src="../assets/dia.jpeg" *ngIf="weatherData.current.temp_c > 15">
+    <img src="../assets/noche.jpeg" *ngIf="weatherData.current.temp_c <= 15">
     <div class="weather-data">
-      <div class="location">Rivera</div>
-      <div class="temperature">14ºC</div>
+      <div class="location">{{ weatherData.location.name }}</div>
+      <div class="temperature">{{ weatherData.current.temp_c | number: '1.0-0' }}ºC</div>
     </div>
   </div>
   <div class="lower-data">
@@ -15,7 +21,7 @@
           <img src="../assets/termometro_frio.png">
           <span>minima</span>
         </div>
-        <div class="info-block-value">10ºC</div>
+        <div class="info-block-value">{{ weatherData.forecast.forecastday[0].day.mintemp_c | number: '1.0-0' }}ºC</div>
       </div>
 
       <div class="info-block">
@@ -23,7 +29,7 @@
           <img src="../assets/termometro_caliente.png">
           <span>maxima</span>
         </div>
-        <div class="info-block-value">20ºC</div>
+        <div class="info-block-value">{{ weatherData.forecast.forecastday[0].day.maxtemp_c | number: '1.0-0' }}ºC</div>
       </div>
 
       <div class="info-block">
@@ -31,7 +37,7 @@
           <img src="../assets/humedad.png">
           <span>humedad</span>
         </div>
-        <div class="info-block-value">70%</div>
+        <div class="info-block-value">{{ weatherData.current.humidity }}%</div>
       </div>
 
       <div class="info-block">
@@ -39,7 +45,7 @@
           <img src="../assets/viento.png">
           <span>viento</span>
         </div>
-        <div class="info-block-value">30 km/h</div>
+        <div class="info-block-value">{{ weatherData.current.wind_kph }} km/h</div>
       </div>
     </div>
   </div>

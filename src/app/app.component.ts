@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClimaService } from '../app/services/clima.service';
+import { WeatherData } from '../app/models/weather.model';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,26 @@ import { ClimaService } from '../app/services/clima.service';
 })
 export class AppComponent implements OnInit{
   title = 'uniweather';
-  weather = [];
-  currentDate = new Date().toLocaleDateString();
+  cityName: string = 'Rivera';
+  weatherData?: WeatherData;
 
   constructor( private climaService: ClimaService ) { }
 
   ngOnInit(): void {
-    this.climaService.cargarClima()
-    .subscribe( (respuesta : any) => {
-      console.log(respuesta);
-      this.weather = respuesta;
-    });
+    this.getWeatherData(this.cityName);
+    this.cityName = '';
+  }
 
+  onSubmit(){
+    this.getWeatherData(this.cityName);
+    this.cityName = '';
+  }
+
+  private getWeatherData(cityName: string){
+    this.climaService.getWeatherData(cityName,'1','yes','yes')
+    .subscribe({ next: (response : WeatherData) => {
+      this.weatherData = response;
+      console.log(response)
+    }});
   }
 }
