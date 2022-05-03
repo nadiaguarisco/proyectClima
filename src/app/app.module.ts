@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ClimaComponent } from './clima/clima.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
 import { DaysListComponentComponent } from './days-list-component/days-list-component.component';
 import { DayComponentComponent } from './day-component/day-component.component';
@@ -21,7 +20,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ClimaComponent,
     HomeComponentComponent,
     DayComponentComponent,
     DaysListComponentComponent
