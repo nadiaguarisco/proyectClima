@@ -1,0 +1,7 @@
+<div class="header">
+    <input type="text" placeholder="Buscar ciudad" name="city" [(ngModel)]="cityName">
+    <a (click)="goToday()">Hoy</a>
+    <a (click)="goTomorrow()">Mañana</a>
+    <a (click)="go7Days()">7 dias</a>
+    <p>{{ cityName }}</p>
+</div>

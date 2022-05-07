@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-day-component',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DayComponentComponent implements OnInit {
 
-  constructor() { }
+  day!: string;
+  constructor(private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.day = params['day']
+      }
+    )
+    console.log(this.day)
   }
 
 }
