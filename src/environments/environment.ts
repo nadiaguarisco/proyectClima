@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  weatherApiBaseUrl: 'http://api.weatherapi.com/v1/forecast.json',
+  weatherApiBaseUrl: 'http://api.weatherapi.com/v1',
   apikey: '06bbe6a2d2134dad84712501222104',
 };
 

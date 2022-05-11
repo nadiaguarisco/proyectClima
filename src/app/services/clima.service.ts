@@ -17,17 +17,31 @@ export class ClimaService {
   constructor(private http: HttpClient) { }
 
   //metodo para traer clima
-  getWeatherData(
+  getForecast(
     cityName: string,
     days: string,
     air_quality: string,
     alerts: string
   ): Observable<WeatherData> {
-    return this.http.get<WeatherData>(this.apiUrl, {
+    return this.http.get<WeatherData>(this.apiUrl + "/forecast.json", {
       params: new HttpParams()
         .set('key', this.keyUrl)
         .set('q', cityName)
         .set('days', days)
+        .set('aqi', air_quality)
+        .set('alerts', alerts)
+    })
+  }
+
+  getCurrent(
+    cityName: string,
+    air_quality: string,
+    alerts: string
+  ): Observable<WeatherData> {
+    return this.http.get<WeatherData>(this.apiUrl + "/current.json", {
+      params: new HttpParams()
+        .set('key', this.keyUrl)
+        .set('q', cityName)
         .set('aqi', air_quality)
         .set('alerts', alerts)
     })
